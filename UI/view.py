@@ -33,9 +33,9 @@ class View(ft.UserControl):
         self._title = ft.Text("TdP 2024 - Lab12: Prova tema d'esame", color="blue", size=24)
         self._page.controls.append(self._title)
 
-        #ROW with some controls
+        # ROW with some controls
         self.ddyear = ft.Dropdown(label="Anno")
-        self.ddcountry= ft.Dropdown(label="Nazione")
+        self.ddcountry = ft.Dropdown(label="Nazione")
 
         self.btn_graph = ft.ElevatedButton(text="Crea Grafo", on_click=self._controller.handle_graph)
 
@@ -48,7 +48,6 @@ class View(ft.UserControl):
         self.txt_result = ft.ListView(expand=0, spacing=5, padding=5, auto_scroll=True)
         self._page.controls.append(self.txt_result)
         self._page.update()
-
 
         self.btn_volume = ft.ElevatedButton(text="Calcola Volumi", on_click=self._controller.handle_volume)
         row2 = ft.Row([self.btn_volume],
