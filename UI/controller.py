@@ -31,7 +31,11 @@ class Controller:
         self._view.update_page()
 
     def handle_volume(self, e):
-        pass
+        volumi = self._model.getVolumiVendita()
+        for k, v in volumi.items():
+            if v > 0:
+                self._view.txtOut2.controls.append(ft.Text(f"{k} --> {v}"))
+        self._view.update_page()
 
     def handle_path(self, e):
         pass

@@ -73,3 +73,23 @@ class DAO:
         cursor.close()
         conn.close()
         return result
+
+    @staticmethod
+    def getAllConnessioni2(rc1, rc2, year):
+        conn = DBConnect.get_connection()
+        result = None
+        cursor = conn.cursor(dictionary=True)
+        query = '''SELECT COUNT(DISTINCT gds1.Product_number) as peso 
+                   FROM go_daily_sales gds1, go_daily_sales gds2
+                   WHERE gds1.Product_number = gds2.Product_number
+                   AND gds1.Retailer_code = %s 
+                   AND gds2.Retailer_code = %s
+                   AND YEAR(gds1.Date) = %s
+                   AND YEAR(gds2.Date) = %s
+                    '''
+        cursor.execute(query, (rc1.Retailer_code, rc2.Retailer_code, str(year), str(year)))
+        for row in cursor:
+            result = row["peso"]
+        cursor.close()
+        conn.close()
+        return result
